@@ -16,8 +16,8 @@ async function rest<T>(path: string, init: RequestInit = {}): Promise<T> {
     signal: AbortSignal.timeout(10_000),
   });
   if (!response.ok) throw new Error(`SUPABASE_${response.status}`);
-  if (response.status === 204) return undefined as T;
-  return response.json() as Promise<T>;
+  const text = await response.text();
+  return (text ? JSON.parse(text) : undefined) as T;
 }
 
 async function upsert(table: string, value: Record<string, unknown>) {

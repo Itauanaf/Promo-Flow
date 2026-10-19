@@ -18,8 +18,8 @@ class SupabaseRest {
       signal: AbortSignal.timeout(10_000),
     });
     if (!response.ok) throw new Error(`SUPABASE_${response.status}`);
-    if (response.status === 204) return undefined as T;
-    return response.json() as Promise<T>;
+    const text = await response.text();
+    return (text ? JSON.parse(text) : undefined) as T;
   }
 
   list<T extends Row>(table: string, query: string) {

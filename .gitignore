@@ -9,6 +9,7 @@ coverage
 supabase-password
 login-password
 telegram-token
+supabase-secret-key
 !.env.example
 *.tsbuildinfo
 .DS_Store

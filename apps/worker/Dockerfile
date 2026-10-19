@@ -15,4 +15,4 @@ COPY packages/connectors packages/connectors
 COPY packages/content packages/content
 COPY packages/messaging packages/messaging
 USER node
-CMD ["pnpm","--filter","@promoflow/worker","start"]
+CMD ["./apps/worker/node_modules/.bin/tsx","apps/worker/src/index.ts"]

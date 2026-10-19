@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <aside className={open ? "sidebar open" : "sidebar"}>
       <div className="brand"><span className="mark">P</span><span>PromoFlow</span></div>
       <nav aria-label="Navegação principal">{nav.map(([href, label, Icon]) => <Link key={href} href={href} onClick={() => setOpen(false)} className={pathname === href ? "active" : ""}><Icon size={18} /><span>{label}</span></Link>)}</nav>
-      <div className="sidebar-foot"><div className="status-dot" /><div><strong>Sistema em demonstração</strong><span>Nenhum envio real ativo</span></div></div>
+      <div className="sidebar-foot"><div className="status-dot" /><div><strong>Operação protegida</strong><span>Envios automáticos pausados</span></div></div>
     </aside>
     <main className="workspace">
       <header className="topbar"><div className="live"><Radio size={15} /><span>Operação pausada</span></div><button className="profile">IA<span className="profile-copy">Itauana<br/><small>Administrador</small></span><ChevronDown size={14}/></button></header>

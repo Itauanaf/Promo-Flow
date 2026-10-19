@@ -6,6 +6,7 @@ import { AutomationPreview } from "./automation-preview";
 import { AdComposer } from "./ad-composer";
 import { ReportPanel } from "./report-panel";
 import { ActionButton } from "./action-button";
+import { OperationalSection } from "./operational-sections";
 
 const pages: Record<string, { title: string; description: string; action: string; icon: typeof Tags; empty: string; hint: string }> = {
   ofertas: { title: "Explorador de ofertas", description: "Encontre, filtre e prepare produtos antes de publicar.", action: "Buscar ofertas", icon: FolderSearch, empty: "Nenhuma busca realizada", hint: "Conecte uma loja e inicie a primeira busca autorizada." },
@@ -20,6 +21,7 @@ const pages: Record<string, { title: string; description: string; action: string
 export function SectionPage({ section }: { section: string }) {
   const page = pages[section]; if (!page) notFound(); const Icon = page.icon;
   const demoEnabled=process.env.NODE_ENV!=="production"&&process.env.ENABLE_DEMO_MODE==="true";
+  if (!demoEnabled) return <OperationalSection section={section}/>;
   const action = actionDetails[section]!;
   if(section==="afiliados") return <><section className="page-heading"><div><p className="eyebrow">Integrações verificáveis</p><h1>{page.title}</h1><p>{page.description}</p></div><ActionButton label={page.action} {...action}/></section><ConnectorStatus /></>;
   if(section==="grupos") return <><section className="page-heading"><div><p className="eyebrow">Canais autorizados</p><h1>{page.title}</h1><p>{page.description}</p></div><ActionButton label={page.action} {...action}/></section><MessagingStatus /></>;

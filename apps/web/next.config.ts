@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   typedRoutes: false,
   poweredByHeader: false,
+  serverExternalPackages: ["bullmq", "ioredis"],
   async headers() {
     return [{ source: "/(.*)", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },

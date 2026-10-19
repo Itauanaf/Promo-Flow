@@ -5,6 +5,15 @@ dist
 coverage
 .env
 .env.local
+.supabase-password
+supabase-password
+login-password
+telegram-token
 !.env.example
 *.tsbuildinfo
 .DS_Store
+supabase/.temp/
+supabase/.branches/
+
+.vercel
+.env*

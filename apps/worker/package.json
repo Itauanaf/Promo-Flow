@@ -1,0 +1,6 @@
+{
+  "name":"@promoflow/worker","private":true,
+  "scripts":{"start":"tsx src/index.ts","build":"tsc --noEmit","lint":"tsc --noEmit","typecheck":"tsc --noEmit","test":"vitest run --passWithNoTests"},
+  "dependencies":{"@promoflow/automation":"workspace:*","@promoflow/connectors":"workspace:*","@promoflow/content":"workspace:*","@promoflow/messaging":"workspace:*","bullmq":"^5.61.2"},
+  "devDependencies":{"tsx":"^4.20.6","typescript":"^5.9.3","vitest":"^3.2.4"}
+}

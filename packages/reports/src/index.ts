@@ -1,0 +1,7 @@
+export type DataQuality="verified"|"estimated"|"unavailable";
+export interface ReportMetric{key:string;label:string;value:number|null;quality:DataQuality;source:string;}
+export interface ReportRow{date:string;store:string;destination:string;found:number;approved:number;discarded:number;sent:number;failed:number;pending:number;clicks:number|null;clicksQuality:DataQuality;discardReason?:string;}
+export interface Report{from:string;to:string;metrics:ReportMetric[];rows:ReportRow[];}
+const csvCell=(value:unknown)=>`"${String(value??"").replaceAll('"','""')}"`;
+export function exportReportCsv(report:Report){const headers=["data","loja","destino","encontradas","aprovadas","descartadas","motivo_descarte","enviadas","falhas","pendentes","cliques","qualidade_cliques"];const lines=report.rows.map(r=>[r.date,r.store,r.destination,r.found,r.approved,r.discarded,r.discardReason??"",r.sent,r.failed,r.pending,r.clicks,r.clicksQuality].map(csvCell).join(","));return[`sep=,`,headers.map(csvCell).join(","),...lines].join("\r\n");}
+export function unavailableCommerceMetrics():ReportMetric[]{return[{key:"sales",label:"Vendas",value:null,quality:"unavailable",source:"Nenhum relatório oficial conectado"},{key:"commissions",label:"Comissões",value:null,quality:"unavailable",source:"Nenhum relatório oficial conectado"},{key:"conversion",label:"Conversão",value:null,quality:"unavailable",source:"Não calculada sem vendas oficiais"}];}

@@ -1,0 +1,17 @@
+{
+  "name": "promoflow",
+  "private": true,
+  "packageManager": "pnpm@10.18.3",
+  "scripts": {
+    "dev": "pnpm --filter @promoflow/web dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+    ,"db:generate": "pnpm --filter @promoflow/database db:generate"
+    ,"db:migrate": "pnpm --filter @promoflow/database db:migrate"
+    ,"db:check": "pnpm --filter @promoflow/database db:check"
+    ,"migrations:validate": "node scripts/validate-migrations.mjs"
+  },
+  "pnpm": { "overrides": { "postcss": ">=8.5.18" } }
+}

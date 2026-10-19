@@ -1,0 +1,2 @@
+-- Intentionally empty. Create the sole administrator in Supabase Auth Dashboard.
+-- Then insert its auth.users UUID into profiles using a trusted server session.

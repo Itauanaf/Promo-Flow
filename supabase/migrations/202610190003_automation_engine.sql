@@ -1,0 +1,10 @@
+begin;
+alter type public.approval_mode add value if not exists 'semi_automatic' before 'automatic';
+alter table public.app_settings alter column timezone set default 'America/Recife';
+alter table public.automation_rules add column if not exists deleted_at timestamptz;
+alter table public.automation_rules add column if not exists version integer not null default 1;
+alter table public.publication_jobs add column if not exists locked_at timestamptz;
+alter table public.publication_jobs add column if not exists worker_id text;
+create index if not exists publications_offer_destination_date_idx on public.publications(offer_id,destination_id,published_at desc);
+comment on column public.automation_rules.deleted_at is 'Soft deletion preserves audit and publication history.';
+commit;
